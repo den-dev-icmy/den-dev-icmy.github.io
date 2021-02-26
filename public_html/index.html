@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="assets/template/css/main.css">
+    <link rel="stylesheet" href="assets/template/css/index.css">
+    <link rel="stylesheet" href="assets/template/vendors/fontawesome/fontawesome.min.css">
+
+    <title>Index page</title>
+</head>
+
+<body>
+<header>
+    <div class="header__top">
+        <div class="top__inner">
+            <div class="top__left">
+                <div class="left__logo">
+                    <img src="assets/template/images/logo.png">
+                </div>
+                <div class="left__contacts">
+                    <a href="tel:79879877665">8 (987) 987-76-65</a>
+                    <i class="fa fa-caret-down"></i>
+                </div>
+            </div>
+            <ul class="top__menu">
+                <li><a href="#!">О компании</a></li>
+                <li><a href="#!" data-expand="#nefteproducti">Нефтепродукты</a></li>
+                <li><a href="#!">Доставка</a></li>
+                <li><a href="#!">Прайс-лист</a></li>
+                <li><a href="#!">Акции</a></li>
+                <li><a href="#!">Контакты</a></li>
+            </ul>
+            <div class="top__right">
+                <div class="right__search">
+                    <i class="fal fa-search"></i>
+                </div>
+                <div class="right__btn-recall">
+                    <button class="btn">
+                        Отправить заявку
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header__bot">
+        <div class="bot__inner">
+            <ul id="nefteproducti">
+                <li>Дизельное топливо</li>
+                <li>Бензин</li>
+                <li>Мазут</li>
+                <li>Битум</li>
+                <li>Керосин</li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<section class="first-screen">
+    <video autoplay muted loop>
+        <source src="assets/template/video.mov">
+    </video>
+</section>
+
+<!--  <script src="assets/template/js/index.js"></script>-->
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.pageYOffset > 0) {
+                header.classList.add('float');
+            } else {
+                header.classList.remove('float');
+            }
+        });
+
+        const headerBot = document.querySelector('.header__bot');
+        const menuLinks = document.querySelectorAll('.top__menu a');
+
+        menuLinks.forEach(el => {
+            el.addEventListener('click', () => {
+                if (!el.dataset['expand']) return;
+                const target = document.querySelector(el.dataset['expand']);
+
+                if (!target.classList.contains('expanded')) {
+                    target.style.height = `${target.scrollHeight}px`;
+                    target.classList.add('expanded');
+                    headerBot.classList.add('expanded');
+                } else {
+                    target.style.height = '0';
+                    target.classList.remove('expanded');
+                    headerBot.classList.remove('expanded');
+                }
+            });
+        })
+
+    });
+</script>
+
+</html>
